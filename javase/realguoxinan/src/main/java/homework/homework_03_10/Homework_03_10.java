@@ -1,4 +1,4 @@
-package com.guoxinan.homework;
+package main.java.homework.homework_03_10;
 
 import java.util.Arrays;
 
