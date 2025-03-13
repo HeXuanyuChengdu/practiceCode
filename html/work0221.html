@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>2月21作业</title>
+    </head>
+    <body>
+        <div id="vending">
+            <form action="">
+                <label for="userInput">请输入商品编号：</label><input type="number" id="userInput">
+                <br>
+                <input type="submit" name="" id="butnBuy" value="购买">
+            </form>
+        </div>
+            <br>
+        <div id="item">
+            <table>
+                <tr><th>编号</th>
+                    <th>商品</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>可口可乐</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>雪碧</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>鲜橙多</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>冰红茶</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>矿泉水</td>
+                </tr>
+            </table>
+        </div>
+        <script>
+            let userInput = document.getElementById("userInput");
+            let butnBuy = document.getElementById("butnBuy");
+            let items = ["可乐","雪碧","鲜橙多","冰红茶","矿泉水"];
+            
+            function buyItem(itemNumber){
+                return items[itemNumber-1];
+            
+            }
+
+            butnBuy.addEventListener("click",(event)=>{
+                event.preventDefault();
+                let itemNumber =parseInt(userInput.value,10);
+                
+                if(itemNumber<1 || itemNumber>5){
+                    console.log("购买了不存在的商品哦~")
+                }
+                else{
+                    console.log("购买成功！您买到的商品是："+buyItem(itemNumber));
+                }
+            });
+        </script>
+        <br>
+        <br>
+        <div id="armstrongQuestion">
+            <form action="">
+               <label for="armstrong">请输入一个三位数：</label> <input type="number" id = "armstrong">
+               <br> 
+               <input type="submit" name="" id="butnArms">
+            </form>  
+        </div>
+        <script>
+            let inputArmstrong = document.getElementById("armstrong");
+            let butnArms = document.getElementById("butnArms");
+
+            function isArmstrong(num){
+                let hud = Math.floor(num/100);
+                let ted = Math.floor((num%100)/10);
+                let oner = num%10;
+               // console.log("百位："+hud+"十位:"+ted+"个位:"+oner);
+               // console.log(hud*hud*hud+ted*ted*ted+oner*oner*oner);
+                return num === hud*hud*hud+ted*ted*ted+oner*oner*oner;
+            }
+            butnArms.addEventListener("click",(event)=>{
+                event.preventDefault();
+                let userArmstrong = parseInt(inputArmstrong.value,10);
+                if(userArmstrong<100 || userArmstrong>999){
+                    console.log("请输入正确的三位数");
+                }
+                else{
+                    if(isArmstrong(userArmstrong)){
+                        console.log("您输入的"+userArmstrong+"是水仙花数");
+                    }
+                    else{
+                        console.log("您输入的"+userArmstrong+"不是水仙花数");
+
+                    }
+                }
+            })
+
+        </script>
+        <br>
+        <br>
+        <div id="fibQuestion">
+            <form action="">
+                <label for="fibInput">请输入要求道第几项：</label><input type="number" id = "fibInput">
+                <br>
+                <input type="submit" id="butnFib">
+            </form>
+        </div>
+        <script>
+            let ordinal = document.getElementById("fibInput");
+            let butnFib = document.getElementById("butnFib");
+
+            function searchFib(n){
+                let one = 1;
+                let two = 2;
+                let three = 0;
+
+                if(n==1){
+                    return one;
+                }
+
+                else if(n==2){
+                    return 2;
+                }
+
+                for(let i=2;i<n;i++){
+                    three = one+two;
+                    one = two;
+                    two = three;
+                }
+                return three;
+            }
+
+            function sumFib(n){
+                let sum = 0;
+                for(let i = 0;i<n;i++){
+                    sum+=searchFib(i+1);
+                }
+                return sum;
+            }
+            
+            butnFib.addEventListener("click",(event)=>{
+                event.preventDefault();
+                let ordi = parseInt(ordinal.value,10);
+
+                if(ordi>25 ||ordi<1){
+                    console.log("请输入1到25以内的数");
+                }
+                else{
+                    console.log("第"+ordi+"个数为:"+searchFib(ordi)+"，目前数列之和为:"+sumFib(ordi));
+                }
+
+            });
+        </script>
+        <br>
+        <br>
+        <div id="factorialQuestion">
+            <form action="">
+                <label for="factInput">请输入10以内的整数：</label><input type="number" id="factInput">
+                <br>
+                <input type="submit" id="butnFact">
+            </form>
+        </div>
+        <script>
+            let factInput = document.getElementById("factInput");
+            let butnFact = document.getElementById("butnFact");
+
+            function searchFactorial(n){
+                if(n ===0){
+                    return 1;
+                }
+                return n* searchFactorial(n-1);
+            
+            }
+
+            butnFact.addEventListener("click",(event)=>{
+                event.preventDefault();
+                let userFact = parseInt(factInput.value,10);
+
+                if(userFact>=10){
+                    console.log("请输入小于10的数！");
+                }
+                else{
+                    console.log(userFact+""+"的阶乘是"+searchFactorial(userFact));
+                }
+            })
+
+        </script>
+    </body>
+</html>

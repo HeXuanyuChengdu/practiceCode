@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>练习</title>
+</head>
+<body>
+    <div id="userInput">
+       <form>
+           <label for="secondInput">请输入秒数：</label><input id="secondInput" type="number">
+            <br>
+           <input type="submit" id="button">
+       </form>
+        <br>
+        ====================
+        <br>
+        <form>
+            <label for="xiaomingScoreYuwen">小明的语文成绩：</label><input id="xiaomingScoreYuwen" type="number">
+            <label for="xiaomingScoreShuxue">小明的数学成绩：</label><input id="xiaomingScoreShuxue" type="number">
+            <label for="xiaomingScoreAaoshu">小明的奥数成绩：</label><input id="xiaomingScoreAaoshu" type="number">
+
+            <br>
+            <input type="submit" id="butn_xiaoming">
+        </form>
+        <br>
+        ======================
+        <br>
+        <form>
+            <label for="numbers">输入三个数：</label><input id="numbers" type="number">
+            <input type="submit" id="compare">
+        </form>
+    </div>
+    <script>
+        let secondInput = document.getElementById("secondInput");
+        let button = document.getElementById("button");
+        let xiaomingScoreYuwen = document.getElementById("xiaomingScoreYuwen");
+        let xiaomingScoreShuxue = document.getElementById("xiaomingScoreShuxue");
+        let xiaomingScoreAaoshu = document.getElementById("xiaomingScoreAaoshu");
+        let button_xiaoming = document.getElementById("butn_xiaoming");
+
+        function secondToOutput (number){
+            number = parseInt(number,10);//解析一个字符串，返回整数，第二个参数代表需要的整数的基数
+            if(number >= 0){
+                let hour = Math.floor(number/3600);//向下取整
+                //console.log(hour+"小时"+"现在number值是:"+number);
+                let min = Math.floor((number%3600)/60);
+                //console.log(min+"分钟"+"现在number值是:"+number)
+                let second =Math.floor(number%60);
+                //console.log(second+"秒"+"现在number值是:"+number);
+                console.log(hour+"小时"+min+"分钟"+second+"秒")
+            }
+            else {
+                console.log("请输入大于0的值");
+            }
+        }
+
+        function isYouleyuan(scoreYuwen, scoreShuxue) {
+            scoreYuwen = parseFloat(scoreYuwen);
+            scoreShuxue = parseFloat(scoreShuxue);
+            return  (scoreYuwen === 100.00 && scoreShuxue === 100.00) ? true:false;
+
+        }
+
+        function isDisini(scoreYuwen,scoreShuxue,scoreAaoshu) {
+            scoreYuwen = parseFloat(scoreYuwen);
+            scoreShuxue = parseFloat(scoreShuxue);
+            scoreAaoshu = parseFloat(scoreAaoshu);
+            return (isYouleyuan(scoreYuwen,scoreShuxue) && scoreAaoshu === 100) ? true:false;
+        }
+
+
+        button.addEventListener("click",(event)=>{
+            event.preventDefault();
+            let number = secondInput.value;
+            //console.log("用户输入："+number);
+            secondToOutput(number);
+
+        });
+
+        button_xiaoming.addEventListener("click",(event) =>{
+            event.preventDefault();
+            let scoreYuwen = xiaomingScoreYuwen.value;
+            let scoreShuxue = xiaomingScoreShuxue.value;
+            let scoreAaoshu = xiaomingScoreAaoshu.value;
+
+            if(isYouleyuan(scoreYuwen,scoreShuxue)) {
+                console.log("去游乐园了");
+            }
+            else {
+                console.log("没有去游乐园");
+            }
+
+            if(scoreAaoshu !== "") {
+              if(isDisini(scoreYuwen,scoreShuxue,scoreAaoshu)){
+                  console.log("去迪士尼了");
+              }
+              else{
+                  console.log("没有去迪士尼");
+              }
+            }
+
+        });
+
+        let numbers = document.getElementById("numbers");
+        let compare = document.getElementById("compare");
+
+        
+
+    </script>
+</body>
+</html>

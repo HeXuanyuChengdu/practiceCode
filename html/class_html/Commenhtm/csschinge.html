@@ -1,0 +1,52 @@
+<!DocTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CSS修改练习</title>
+    <style>
+    #bgcloreChinge{
+        padding: 20px;
+        border: 1px solid #ccc;
+    }
+    #text_example{
+        font-size: 16px;
+        color: black;
+    }
+    </style>
+</head>
+<body>
+    <div id="bgcloreChinge">
+        <p id="text_example">这段文字要被修改</p>
+       <button id="butn_chinge">点击修改</button>
+    </div>
+    <script>
+        let text = document.getElementById("text_example");
+        let butn = document.getElementById("butn_chinge");
+        function chinge(){
+            // 切换文字颜色
+            if (text.style.color === "red") {
+                text.style.color = "black";
+            } else {
+                text.style.color = "red";
+            }
+
+            // 切换字体大小
+            if (text.style.fontSize === "20px") {
+                text.style.fontSize = "16px";
+            } else {
+                text.style.fontSize = "20px";
+            }
+
+            // 切换背景颜色
+            if (text.style.backgroundColor === "lightyellow") {
+                text.style.backgroundColor = "transparent";
+            } else {
+                text.style.backgroundColor = "lightyellow";
+            }
+        }
+        butn.addEventListener("click",()=>{
+            chinge();
+        });
+    </script>
+</body>
+</html>

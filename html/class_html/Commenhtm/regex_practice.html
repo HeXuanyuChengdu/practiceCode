@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>正则表达式联系</title>
+</head>
+<body>
+    <div id="regexpractice">
+        <input type="text" id="inputfield" placeholder="请输入内容">
+    </div>
+<script>
+    const illegalCharRegex = /([Ff][Uu][Cc][Kk])|([Ss][Hh][Ii][Tt])|([Bb][Ii][Tt][Cc][Hh])/g;   //定义非法字符串的正则表达式
+    const inputfield = document.getElementById("inputfield");
+
+    inputfield.addEventListener("input",(event) =>{
+         let userinput = event.target.value;      //获取输入类容
+         //console.log(userinput);
+         userinput = userinput.replace(/\s/g,'');  //替换所有空格
+         //console.log("替换后："+userinput);
+         userinput = userinput.replace(illegalCharRegex,'*'); //将非法字符串替换为*
+         //console.log("替换后："+userinput);
+         event.target.value = userinput; //更新文本框内容
+
+
+    });
+
+
+</script>
+</body>
+</html>

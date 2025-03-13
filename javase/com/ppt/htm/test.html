@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+<div id="grandfather">祖父
+    <div id="parent">父辈
+        <div id="child">孩子
+        </div>
+        <div id="brother">兄弟
+        </div>
+</div>
+<script>
+    const grad = document.getElementById("grandfather");
+    const parent = document.getElementById("parent");
+    const child = document.getElementById("child");
+    const brother = document.getElementById("brother");
+
+    grad.addEventListener("click",()=>{
+        console.log("祖父层的捕获阶段监听器");
+    },true);
+    grad.addEventListener("click",()=>{
+        console.log("祖父层的冒泡阶段监听器");
+    });
+
+    parent.addEventListener("click",()=>{
+        console.log("父辈层的捕获阶段监听器");
+    },true);
+    parent.addEventListener("click",()=>{
+        console.log("父辈层的冒泡阶段监听器");
+    });
+
+    child.addEventListener("click",()=>{
+        console.log("子辈层的捕获阶段监听器");
+    },true);
+
+    child.addEventListener("click",()=>{
+        console.log("子辈的冒泡阶段监听器2")
+    });
+    child.addEventListener("click",()=>{
+        console.log("子辈层的冒泡阶段监听器");
+    });
+
+
+
+    brother.addEventListener("click",()=>{
+        console.log("兄弟层的捕获阶段监听器");
+    },true);
+    brother.addEventListener("click",()=>{
+        console.log("兄弟层的冒泡阶段监听器");
+    })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>计算器</title>
+    </head>
+    <body>
+        <div id="calculator">
+            <form action="">
+                <label for="Option1">请输入第一个数：</label><input type="number" id="Option1">
+                <label for="Option2">请输入第二个数：</label><input type="number" id="Option2">
+                <label for="signal">请输入运算符：</label><input type="text" id="signal">
+                <br>
+                <input type="submit" name="" id="calculate" value="运算">
+            </form>
+
+        </div>
+        <script>
+            let option1 = document.getElementById("Option1");
+            let option2 = document.getElementById("Option2");
+            let signal = document.getElementById("signal");
+            let calculate = document.getElementById("calculate");
+
+            function inputToNumber(inputer){
+                const floatRegex = /^-?\d+(\.\d+)?$/;
+                if(floatRegex.test(inputer)){
+                    return parseFloat(inputer);
+                }
+                else{
+                    console.log("请输入规范的数字！");
+                }
+                
+            }
+
+            function calculating(sign,num1,num2){
+                let result;
+                //console.log("输入的运算符为："+sign);
+                switch(sign){
+                    case "+":
+                        result = num1 + num2;
+                        break;
+                    case "-":
+                        result = num1 - num2;
+                        break;
+                    case "*":
+                        result = num1 * num2;
+                        break;
+                    case "/":
+                        if(num2 !== 0){
+                            result = num1 / num2;
+                        }
+                        else{
+                            console.log("除数不能为0");
+                           return "除数不能为0";
+                        }
+                        break;
+                    default:
+                        console.log("输入了错误的运算符");
+                        return "错误运算符"
+                }
+                return result;
+            }
+            
+            calculate.addEventListener("click",(event) =>{
+                event.preventDefault();
+                //console.log(signal.value);
+                
+                let num1 = inputToNumber(option1.value);
+                let num2 = inputToNumber(option2.value);
+                let sign = signal.value;
+                let result = calculating(sign,num1,num2);
+                
+                if(typeof result === "number"){
+                    console.log("计算结果等于："+result);
+                }
+                else{
+                    console.log("无法完成计算，因为:"+result);
+                }
+            });
+
+
+        </script>
+    </body>
+</html>

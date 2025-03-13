@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   <title>事件流练习</title>
+</head>
+<body>
+    <div id="grandparent" >
+        祖辈
+        <div id="parent" style="color: blue">
+            父辈
+            <div id="child" style="color: khaki">
+                孩子
+            </div>
+            <div id="brother">
+                兄弟
+            </div>
+        </div>
+    </div>
+    <div id ="gradM0">
+        祖辈动态绑定
+        <div id="parM0">
+            父辈动态绑定
+            <div id="chiM0">
+                子辈动态绑定
+            </div>
+        </div>
+    </div>
+    <div id="inline">
+        <button onclick="butOnClick()">点击</button>
+        <script>
+            function butOnClick(){
+                console.log("被点击了");
+            }
+        </script>
+    </div>
+    <div id="one">
+        <button id="button01">动态绑定按钮</button>
+        <button id="button02">addEventListener按纽</button>
+    </div>
+    <br>
+    <br>
+    <div id="stopParent">
+        被阻止的父辈
+        <div id="stopChild">
+            被阻止的孩子
+        </div>
+    </div>
+    <br>
+    <br>
+    <div id="link">
+        <a href="../imge/exampe_1.jpg" id="linkOfimage">查看图片</a>
+    </div>
+    <br>
+    <br>
+    <div id="EVentDelegation">
+        <ul id="list">
+            <li id="row1">item1</li>
+            <li id="row2">item2</li>
+            <li id="row3">item3</li>
+        </ul>
+    </div>
+    <script>
+        let grad = document.getElementById("grandparent");
+        let parent = document.getElementById("parent");
+        let child = document.getElementById("child");
+        let brother = document.getElementById("brother");
+
+        function onClick (message){
+            console.log(message)
+        }
+        grad.addEventListener("click",() => {
+            onClick("this is grad Catch");
+        },true);
+        parent.addEventListener("click",() => {
+            onClick("this is parent Catch");
+        },true);
+        child.addEventListener("click",() => {
+            onClick("this is child Catch")
+        },true);
+        brother.addEventListener("click",() => {
+            onClick("this is brother Catch");
+        },true);
+
+        grad.addEventListener("click",() => {
+            onClick("this is grad Boob");
+        });
+        parent.addEventListener("click",() => {
+            onClick("this is parent Boob");
+        });
+        child.addEventListener("click",() => {
+            onClick("this is child Boob");
+        })
+        brother.addEventListener("click",() => {
+            onClick("this is brother Boob");
+        });
+
+        let gradM0 = document.getElementById("gradM0");
+        let parM0 = document.getElementById("parM0");
+        let chiM0 = document.getElementById("chiM0");
+
+        gradM0.onclick = () =>{
+            onClick(" this is gradM0");
+        };
+        parM0.onclick = () => {
+            onClick("this is parMO");
+        };
+        chiM0.onclick = () =>{
+            onClick("this is chiM0");
+        };
+
+        let button01 = document.getElementById("button01");
+        let button02 = document.getElementById("button02");
+
+        button01.onclick = () => {
+            onClick("hello");
+        };
+        button01.onclick = () =>{
+            onClick("hello again");
+        }
+
+
+        button02.addEventListener("click",() => {
+            onClick("hello again Linstener");
+        });
+        button02.addEventListener("click",() =>{
+            onClick("hello Linstener");
+        });
+
+        let stopParent = document.getElementById("stopParent");
+        let stopChild = document.getElementById("stopChild");
+
+        stopParent.addEventListener("click",(event) =>{
+            console.log("可能被阻止的父辈的Catch");
+         //    event.stopPropagation();//阻止事件捕获
+        },true);
+        stopParent.addEventListener("click",(event)=>{
+            console.log("可能被阻止的父辈的Bubble");
+        });
+
+        stopChild.addEventListener("click",(event)=>{
+            console.log("可能被阻止的孩子的Catch01")
+
+        },true);
+        stopChild.addEventListener("click",()=>{
+            console.log("可能被阻止的孩子的Catch02")
+        },true);
+        stopChild.addEventListener("click",(event) =>{
+            console.log("可能被阻止的孩子的bubble01");
+            //event.stopPropagation();//阻止事件冒泡
+            event.stopImmediatePropagation();//阻止事件传播到同一元素其他监听器
+        });
+        stopChild.addEventListener("click",() =>{
+            console.log("可能被阻止的孩子的bubble02");
+        });
+    const link = document.getElementById("linkOfimage");
+     link.addEventListener("click",(event) =>{
+         event.stopPropagation();//阻止传播
+         //console.log("阻止默认行为");
+         event.preventDefault();//阻止默认行为
+         console.log("点击但不跳转");
+     });
+
+    list = document.getElementById("list");
+
+    list.addEventListener("click",(event) => {
+        if(event.target.tagName === "LI")
+        {
+            console.log("Clicked:",event.target.textContent);
+        }
+    })
+    </script>
+</body>
+</html>

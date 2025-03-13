@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点名器</title>
+</head>
+<body>
+    <div id="call_row">
+        <span>被点到的同学:</span><span id="name">同学</span>
+        <br>
+        <button id="butn_callRow">点名</button>
+    </div>
+    <script>
+        let name = document.getElementById("name");
+        let butn = document.getElementById("butn_callRow");
+        let names = "姚懿轩\n" +
+            "付威\n" +
+            "程珺林\n" +
+            "岳华龙\n" +
+            "赵艺栋\n" +
+            "邱世锦\n" +
+            "李锦\n" +
+            "于光辉\n" +
+            "石云曦\n" +
+            "解成龙\n" +
+            "孙添好\n" +
+            "张弘晔\n" +
+            "王子鑫\n" +
+            "周家锋\n" +
+            "王丹\n" +
+            "杨沂川\n" +
+            "刘继龙\n" +
+            "周晋翔\n" +
+            "黄郭圣\n" +
+            "李清\n" +
+            "庄心福\n" +
+            "商宇\n" +
+            "罗彬\n" +
+            "赵国庆\n" +
+            "程新宇\n" +
+            "聂佳辉\n" +
+            "廖龙\n" +
+            "袁易\n" +
+            "段奇雨\n" +
+            "严川鸿\n" +
+            "陈晓夏\n" +
+            "舒洪梅\n" +
+            "彭骏\n" +
+            "王春洋\n" +
+            "刘纹瑜\n" +
+            "甘宇东\n" +
+            "文茜\n" +
+            "陈长帝\n" +
+            "何勰\n" +
+            "张波\n" +
+            "帕巴足\n" +
+            "陈德炳"
+        let nameList = names.split("\n");
+
+        function getRandom(){
+            return Math.floor(Math.random()*nameList.length);
+        }
+
+        function callStudents(){
+            let index = getRandom();
+            return nameList[index];
+        }
+
+        butn.addEventListener("click",()=>{
+            // event.preventDefault();
+            // console.log(callStudents());
+            name.textContent = callStudents();
+        });
+
+    </script>
+</body>
+</html>

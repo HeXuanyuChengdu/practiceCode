@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>登录次数限制</title>
+    </head>
+    <body>
+        <div id="userLogin">
+            <form action="">
+                <label for="username">账户名：</label><input type="text" name="" id="username">
+                <br>
+                <label for="userpassword">密码:</label><input type="password" id="userpassword">
+                <br>
+                <input type="submit" value="登录" id="buttonLogin">
+                <br>
+                <p>提示：只有3次登录机会哦</p>
+            </form>
+            
+        </div>
+
+        <script>
+            let butn = document.getElementById("buttonLogin");
+           // console.log(butn.value);
+            let username = document.getElementById("username");
+            let password = document.getElementById("userpassword");
+            let count = 0;
+
+            const realUsername = "maomao";
+            const realPassword = "110014";
+            
+            function check(userInput,passInput){
+                return userInput === realUsername && passInput === realPassword;
+            }
+            
+            butn.addEventListener("click",(event) =>{
+                event.preventDefault();
+                if(count<3 && !check(username.value,password.value)){
+                    console.log("登录失败");
+                    count++;
+                }
+                if(count<3 && check(username.value,password.value))
+                {
+                    console.log("登录成功");
+                    return;
+                }
+
+                if(count >= 3){
+                   console.log("登录次数达到限制")
+                    return;
+                }
+            
+            })
+
+
+        </script>
+    </body>
+</html>

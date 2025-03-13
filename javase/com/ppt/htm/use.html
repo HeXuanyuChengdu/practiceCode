@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>use</title>
+</head>
+<body>
+<div id="grandparent">
+  祖辈
+  <div id="parent">
+    父辈
+    <div id="child">
+      孩子
+    </div>
+  </div>
+</div>
+<script>
+  const grad = document.getElementById("grandparent");
+  const parent = document.getElementById("parent");
+  const child = document.getElementById("child");
+
+  grad.addEventListener("click",()=>{
+    console.log("祖父层的捕获阶段监听器");
+  },true);
+  grad.addEventListener("click",()=>{
+    console.log("祖父层的冒泡阶段监听器");
+  });
+
+  parent.addEventListener("click",()=>{
+    console.log("父辈层的捕获阶段监听器");
+  },true);
+  parent.addEventListener("click",()=>{
+    console.log("父辈层的冒泡阶段监听器");
+  });
+
+  child.addEventListener("click",()=>{
+    console.log("子辈层的捕获阶段监听器");
+  },true);
+
+  child.addEventListener("click",(event)=>{
+    console.log("子辈的冒泡阶段监听器2")
+    event.stopImmediatePropagation();
+  });
+  child.addEventListener("click",()=>{
+    console.log("子辈层的冒泡阶段监听器");
+  });
+</script>
+<div id="EVentDelegation">
+    <ul id="list"> <!-- 表示无序列表-->
+        <li id="row1">item1</li>
+        <li id="row2">item2</li>
+        <li id="row3">item3</li>
+    </ul>
+</div>
+<script>
+    const list = document.getElementById("list");   //只操作父元素
+
+    list.addEventListener("click",(event) => {
+        if(event.target.tagName === "LI")    //target代表真正触发事件的元素,li标签的默认name属性值
+        {
+            console.log("Clicked:",event.target.textContent);//textContent为元素对应的标签中的文本信息
+        }
+    });
+</script>
+
+</body>
+</html>

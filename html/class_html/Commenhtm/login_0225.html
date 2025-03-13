@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+</head>
+<body>
+    <div id="login">
+        <form action="" id="longinForm">
+        <label for="username">用户名</label><input type="text" id="username">
+            <br>
+        <label for="userPassword">密码:</label><input type="password" id="userPassword">
+            <br>
+        <input type="submit" value="登录" id="butn_login">
+        </form>
+    </div>
+    <script>
+        const form = document.getElementById("longinForm");
+        const userValues = [{userName:"yueran",passWord:"1234"},
+                            {userName: "maomao",passWord: "5678"},
+                            {userName: "xiaoming",passWord: "a1b2c3"}];
+        let attempts = 0 ; //计数错误次数
+
+        form.addEventListener("submit",function (event){
+            event.preventDefault();//阻止表单提交
+            const username = document.getElementById("username").value;
+            const userPassword = document.getElementById("userPassword").value;
+
+            //定义正则表达式
+            const userNameRegex = /^[a-zA-Z0-9]+$/;  //模式：一个以上的数字或字母
+            const userPassWordRegex = /^[a-zA-Z0-9]+$/;    //模式：一个或以上的数字、字母、下划线
+
+            //检查输入格式
+            if(!userNameRegex.test(username)){
+                alert("用户名格式错误：只能输入数字或字母");
+                return;
+            }
+            if(!userPassWordRegex.test(userPassword)){
+                alert("用户密码格式错误：只能输入数字密码下划线");
+                return;
+            }
+
+            const isValued = userValues.some(user=> user.userName === username && user.passWord === userPassword);
+            if(isValued){
+                window.location.href = "success.html";  //登录成功跳转
+            }else{
+                attempts++; //计数加1
+                alert(`登录失败，剩余尝试次数：${3 - attempts}`);
+            }
+
+            if(attempts >= 3){
+                window.location.href = "failed.html";
+            }
+        });
+
+    </script>
+</body>
+</html>

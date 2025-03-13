@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>监听练习</title>
+</head>
+<body>
+    <div id="div_01">
+        <button id="button_01">点击</button>
+        <script src="../js/PracticeLinster.js"></script>
+    </div>
+    <div id="div_02">
+        <script>
+            document.addEventListener("keydown",function (event){
+                console.log("按下的键是"+event.key);
+            });
+        </script>
+    </div>
+    <div id="div_03">
+        <button id="button_timeset">定时器</button>
+        <script>
+            let butn = document.getElementById("button_timeset");
+            butn.addEventListener("click",function (){
+                console.log("定时器启动");
+                setTimeout(function (){
+                    console.log("定时器执行完成");
+                },2000);
+                console.log("定时器启动后，继续执行其他代码。。。")
+            });
+        </script>
+    </div>
+</body>
+</html>
