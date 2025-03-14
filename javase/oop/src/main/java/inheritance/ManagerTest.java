@@ -6,27 +6,38 @@ import java.util.Objects;
 
 public class ManagerTest {
     public static void main(String[] args) {
-        Employee[] staff = new Employee[3];
-        staff[0] = new Employee("小明",75000,2024,12,31);
-        staff[1] = new Employee("王老五",80000,2024,7,15);
-        staff[2] = new Manager("王鑫",90000,2018,9,1);
-       // staff[2].setBound()
-        //Manager boss = staff[2];
+//        Employee[] staff = new Employee[3];
+//        staff[0] = new Employee("小明",75000,2024,12,31);
+//        staff[1] = new Employee("王老五",80000,2024,7,15);
+//        staff[2] = new Manager("王鑫",90000,2018,9,1);
+//       // staff[2].setBound()
+//        //Manager boss = staff[2];
+//
+//
+////        Manager[] managers = new Manager[3];
+////        Employee[] staff2 = managers;
+////        staff2[0] = new Employee(1000,2020,11,11);
+////        System.out.println(staff2[0]);
+//
+//        for (Employee e : staff) {
+//            System.out.println(e);
+//            e.raiseSalary(15);
+//          // System.out.println("提升15%薪水后,"+e.getName()+"的薪水是"+e.getSalary());
+//            System.out.printf("%s提升15%%薪水后，薪水为%,.2f\n",e.getName(),e.getSalary());
+//        }
 
+        Employee e = new Employee("haha",1000,2024,12,31);
 
-//        Manager[] managers = new Manager[3];
-//        Employee[] staff2 = managers;
-//        staff2[0] = new Employee(1000,2020,11,11);
-//        System.out.println(staff2[0]);
-
-        for (Employee e : staff) {
-            System.out.println(e);
-            e.raiseSalary(15);
-          // System.out.println("提升15%薪水后,"+e.getName()+"的薪水是"+e.getSalary());
-            System.out.printf("%s提升15%%薪水后，薪水为%,.2f\n",e.getName(),e.getSalary());
+        if(e instanceof Manager a){
+            System.out.println(a.getName());
         }
 
+
+        System.out.println(m);
     }
+
+
+
 
 }
 
